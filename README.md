@@ -150,16 +150,31 @@ I corrected the key path, restricted the key's file permissions, created the des
 
 ## What I Learned
 
-- The relationship between a VPC, subnet, route table and Internet Gateway.
-- The difference between routing and traffic permissions.
-- The difference between an IAM user and a Linux user.
-- How SSH access on port 22 differs from HTTP access on port 80.
-- How to install and manage a Linux service.
-- The difference between starting a service now and enabling it at boot.
-- How to interpret HTTP `200`, `304` and `404` responses.
-- How access logs differ from service lifecycle logs.
-- Why localhost testing and external browser testing check different paths.
-- How to transfer files securely with SCP.
+## Screenshots
+
+### 1. Website Hosted on EC2
+The custom website accessed through the instance's public IPv4 address.
+
+![Website hosted on EC2](screenshots/01-live-website.png)
+
+### 2. Public Subnet Routes
+The VPC local route and the default route to the Internet Gateway.
+
+![Public subnet routes](screenshots/02-public-routes.png)
+
+### 3. Security Group Rules
+HTTP access on port 80 and SSH access restricted to a selected IPv4 address on port 22.
+
+![Security group inbound rules](screenshots/03-security-group-rules.png)
+
+### 4. Nginx Health Check
+The service state and a successful local HTTP response.
+
+![Nginx health check](screenshots/04-nginx-health-check.png)
+
+### 5. Nginx Access Log
+HTTP requests and their response codes recorded by Nginx.
+
 
 ## View the Website Locally
 
