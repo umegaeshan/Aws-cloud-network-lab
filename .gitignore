@@ -1,0 +1,14 @@
+# Private keys
+*.pem
+*.ppk
+*.key
+
+
+.env
+.env.*
+.aws/
+
+
+.vscode/
+Thumbs.db
+.DS_Store
