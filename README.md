@@ -24,6 +24,39 @@ The EC2 instance is located in the public subnet and has a public
 IPv4 address. The subnet's route table provides a route to the
 Internet Gateway. A security group controls traffic to the instance.
 
+## Network Diagram
+
+```mermaid
+flowchart TD
+    Visitor["Website visitor"]
+    Admin["My laptop"]
+    IGW["Internet Gateway"]
+
+    subgraph VPC["VPC: 10.20.0.0/16"]
+        RT["Public route table"]
+        subgraph Subnet["Public subnet: 10.20.1.0/24"]
+            EC2["EC2: Amazon Linux + Nginx"]
+        end
+        SG["Security Group"]
+    end
+
+    Visitor -->|"HTTP: TCP 80"| IGW
+    Admin -->|"SSH: TCP 22"| IGW
+    IGW -->|"Public IPv4 connectivity"| EC2
+    RT -.->|"Associated with"| Subnet
+    RT -.->|"0.0.0.0/0 route"| IGW
+    SG -.->|"Traffic rules applied to"| EC2
+```
+
+Solid arrows show simplified connection paths.
+Dotted arrows show configuration relationships.
+
+- HTTP access is allowed from any IPv4 address.
+- SSH access is restricted to my selected public IPv4 address.
+- The route table also contains the VPC local route.
+- The Internet Gateway is attached to the VPC.
+- The EC2 instance has a public IPv4 address.
+
 ## Routing
 
 | Destination | Target | Purpose |
